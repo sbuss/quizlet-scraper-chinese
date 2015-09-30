@@ -10,12 +10,13 @@ def _elements(tree, index, separator):
     chinese = tree.xpath(
         '//*[@id="subpage"]/article/div[{index}]/div[2]/h3/span'.format(
             index=index))[0].text_content().strip()
-    print(chinese)
     meaning = tree.xpath(
         '//*[@id="subpage"]/article/div[{index}]/div[2]/p/span'.format(
             index=index))[0].text_content().strip()
-    print(meaning)
-    pinyin, english = meaning.split(separator, 1)
+    try:
+        pinyin, english = meaning.split(separator, 1)
+    except:
+        pinyin, english = '', meaning
     return {
         'chinese': chinese,
         'pinyin': pinyin,
@@ -23,13 +24,12 @@ def _elements(tree, index, separator):
     }
 
 
-def contents(url, separator):
+def yield_contents(url, separator):
     tree = _tree(url)
-    elements = []
     index = 1
     while True:
         try:
-            elements.extend(_elements(tree, index, separator))
+            yield _elements(tree, index, separator)
+            index += 1
         except IndexError:
             break
-    return elements
