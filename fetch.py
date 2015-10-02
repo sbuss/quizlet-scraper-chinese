@@ -6,6 +6,10 @@ def _tree(url):
     return html.fromstring(requests.get(url).text)
 
 
+def _prepare(text):
+    return text.replace("\n", "<br \>").strip().encode('utf-8')
+
+
 def _elements(tree, index, separator):
     chinese = tree.xpath(
         '//*[@id="subpage"]/article/div[{index}]/div[2]/h3/span'.format(
@@ -18,9 +22,9 @@ def _elements(tree, index, separator):
     except:
         pinyin, english = '', meaning
     return {
-        'chinese': chinese,
-        'pinyin': pinyin,
-        'english': english,
+        'chinese': _prepare(chinese),
+        'pinyin': _prepare(pinyin),
+        'english': _prepare(english),
         'tags': "",
     }
 
