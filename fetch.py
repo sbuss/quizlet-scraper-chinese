@@ -6,6 +6,10 @@ def _tree(url):
     return html.fromstring(requests.get(url).text)
 
 
+def _is_chinese(text):
+    return any(u'\u4e00' <= c <= u'\u9fff' for c in text)
+
+
 def _prepare(text):
     return text.replace("\n", "<br \>").strip().encode('utf-8')
 
@@ -17,6 +21,10 @@ def _elements(tree, index, separator):
     meaning = tree.xpath(
         '//*[@id="subpage"]/article/div[{index}]/div[2]/p/span'.format(
             index=index))[0].text_content().strip()
+    # switch columns, if applicable
+    if _is_chinese(meaning):
+        meaning, chinese = chinese, meaning
+
     try:
         pinyin, english = meaning.split(separator, 1)
     except:
