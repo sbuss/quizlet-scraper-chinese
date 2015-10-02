@@ -1,6 +1,6 @@
 from csv import DictWriter
 
-keys = ['chinese', 'pinyin', 'english', 'lesson']
+keys = ['chinese', 'pinyin', 'english', 'tags']
 
 
 def get_writer(fname):

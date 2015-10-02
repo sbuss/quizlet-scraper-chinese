@@ -21,6 +21,7 @@ def _elements(tree, index, separator):
         'chinese': chinese,
         'pinyin': pinyin,
         'english': english,
+        'tags': "",
     }
 
 
