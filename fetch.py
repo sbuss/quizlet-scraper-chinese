@@ -22,7 +22,7 @@ def _elements(tree, index, separator):
         '//*[@id="subpage"]/article/div[{index}]/div[2]/p/span'.format(
             index=index))[0].text_content().strip()
     # switch columns, if applicable
-    if _is_chinese(meaning):
+    if not _is_chinese(chinese):
         meaning, chinese = chinese, meaning
 
     try:
