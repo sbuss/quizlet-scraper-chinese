@@ -2,7 +2,7 @@ from dump import get_writer
 from fetch import yield_contents
 
 urls = [
-    ('https://quizlet.com/12455900/1-l1-all-flash-cards/', ':', 'lesson_1')  # nopep8
+    ('https://quizlet.com/12455900/1-l1-all-flash-cards/', ':', 'lesson_1'),  # nopep8
     ('https://quizlet.com/12455865/1-l2-all-flash-cards/', ':', 'lesson_2'),  # nopep8
     ('https://quizlet.com/12588906/1-l3-all-flash-cards/', '\n', 'lesson_3'),  # nopep8
     ('https://quizlet.com/12589825/1-l4-all-flash-cards/', '\n', 'lesson_4'),  # nopep8
